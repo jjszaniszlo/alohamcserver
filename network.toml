@@ -1,0 +1,17 @@
+name = "Aloha Minecraft Network"
+proxy = "proxy"
+port = 25565
+
+[servers.survival]
+port = 25567
+
+[servers.creative]
+port = 25566
+
+[variables]
+MOTD = "Welcome to the ALOHA Snack Bar Minecraft Network!"
+MAX_PLAYERS = "32"
+
+[markdown]
+files = ["README.md"]
+auto_update = false

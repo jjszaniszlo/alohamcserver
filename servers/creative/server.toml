@@ -1,0 +1,47 @@
+name = "creative"
+mc_version = "1.21.4"
+
+[jar]
+type = "fabric"
+loader = "latest"
+installer = "latest"
+
+[variables]
+SERVER_PORT = "25565"
+
+[launcher]
+eula_args = true
+nogui = true
+
+[markdown]
+files = ["README.md"]
+auto_update = false
+
+[options]
+success_line = ""
+stop_command = ""
+
+[[mods]]
+type = "modrinth"
+id = "fabricproxy-lite"
+version = "v2.9.0"
+
+[[mods]]
+type = "modrinth"
+id = "c2me-fabric"
+version = "0.3.1.1.0+1.21.4"
+
+[[mods]]
+type = "modrinth"
+id = "krypton"
+version = "0.2.8"
+
+[[mods]]
+type = "modrinth"
+id = "lithium"
+version = "mc1.21.4-0.14.3-fabric"
+
+[[mods]]
+type = "modrinth"
+id = "worldedit"
+version = "7.3.10-beta-01"

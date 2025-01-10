@@ -1,0 +1,17 @@
+name = "proxy"
+mc_version = "latest"
+
+[jar]
+type = "velocity"
+
+[launcher]
+nogui = false
+proxy_flags = true
+
+[markdown]
+files = ["README.md"]
+auto_update = false
+
+[options]
+success_line = ""
+stop_command = ""

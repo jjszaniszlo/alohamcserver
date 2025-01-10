@@ -1,0 +1,157 @@
+name = "survival"
+mc_version = "1.21.4"
+
+[jar]
+type = "fabric"
+loader = "latest"
+installer = "latest"
+
+[variables]
+SERVER_PORT = "25565"
+
+[launcher]
+eula_args = true
+nogui = true
+
+[markdown]
+files = ["README.md"]
+auto_update = false
+
+[options]
+success_line = ""
+stop_command = ""
+
+[[mods]]
+type = "modrinth"
+id = "fabricproxy-lite"
+version = "v2.9.0"
+
+[[mods]]
+type = "modrinth"
+id = "c2me-fabric"
+version = "0.3.1.1.0+1.21.4"
+
+[[mods]]
+type = "modrinth"
+id = "krypton"
+version = "0.2.8"
+
+[[mods]]
+type = "modrinth"
+id = "lithium"
+version = "mc1.21.4-0.14.3-fabric"
+
+[[mods]]
+type = "modrinth"
+id = "terralith"
+version = "lQreFvOm"
+
+[[mods]]
+type = "modrinth"
+id = "spawn-animations"
+version = "1.10+mod"
+
+[[mods]]
+type = "modrinth"
+id = "fabric-api"
+version = "0.114.2+1.21.4"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns"
+version = "v4.6+mod"
+
+[[mods]]
+type = "modrinth"
+id = "nullscape"
+version = "dHJAVX8s"
+
+[[mods]]
+type = "modrinth"
+id = "true-ending"
+version = "OegcvXrX"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-stronghold-overhaul"
+version = "v2.3+mod"
+
+[[mods]]
+type = "modrinth"
+id = "vanilla-refresh"
+version = "A8QA6lsv"
+
+[[mods]]
+type = "modrinth"
+id = "hopo-better-underwater-ruins"
+version = "j5QsKFXs"
+
+[[mods]]
+type = "modrinth"
+id = "hopo-better-ruined-portals"
+version = "31DRiEea"
+
+[[mods]]
+type = "modrinth"
+id = "more-mobs"
+version = "1.5.4+mod"
+
+[[mods]]
+type = "modrinth"
+id = "spellbound-weapons"
+version = "AYZsuKK8"
+
+[[mods]]
+type = "modrinth"
+id = "mastercutter"
+version = "1.5-mc1.21.4+mod"
+
+[[mods]]
+type = "modrinth"
+id = "better-bundle"
+version = "1.5.1-mc1.21.4+mod"
+
+[[mods]]
+type = "modrinth"
+id = "jakes-build-tools"
+version = "1.8.1+mod"
+
+[[mods]]
+type = "modrinth"
+id = "reg-more-foods"
+version = "1.2.1+1.21.4+mod"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-swamp-hut-overhaul"
+version = "v2.1+mod"
+
+[[mods]]
+type = "modrinth"
+id = "ketkets-furnicraft"
+version = "4.7+mod"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-woodland-mansion-replacement"
+version = "v1.4+mod"
+
+[[mods]]
+type = "modrinth"
+id = "colorful-trims"
+version = "1.8+mod"
+
+[[mods]]
+type = "modrinth"
+id = "gardeners-dream"
+version = "1.7+mod"
+
+[[mods]]
+type = "modrinth"
+id = "automaticons"
+version = "2.0+mod"
+
+[[mods]]
+type = "modrinth"
+id = "incendium"
+version = "7mVvV9Th"
