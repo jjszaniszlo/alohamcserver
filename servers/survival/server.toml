@@ -6,9 +6,6 @@ type = "fabric"
 loader = "latest"
 installer = "latest"
 
-[variables]
-SERVER_PORT = "25565"
-
 [launcher]
 eula_args = true
 nogui = true
@@ -155,3 +152,8 @@ version = "2.0+mod"
 type = "modrinth"
 id = "incendium"
 version = "7mVvV9Th"
+
+[[mods]]
+type = "modrinth"
+id = "appleskin"
+version = "cHQjeYVS"

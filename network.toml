@@ -3,14 +3,14 @@ proxy = "proxy"
 port = 25565
 
 [servers.survival]
-port = 25567
-
-[servers.creative]
 port = 25566
 
+[servers.creative]
+port = 25567
+
 [variables]
-MOTD = "Welcome to the ALOHA Snack Bar Minecraft Network!"
 MAX_PLAYERS = "32"
+MOTD = "Welcome to the ALOHA Snack Bar Minecraft Network!"
 
 [markdown]
 files = ["README.md"]

@@ -6,9 +6,6 @@ type = "fabric"
 loader = "latest"
 installer = "latest"
 
-[variables]
-SERVER_PORT = "25565"
-
 [launcher]
 eula_args = true
 nogui = true
