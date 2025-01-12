@@ -6,6 +6,9 @@ type = "fabric"
 loader = "latest"
 installer = "latest"
 
+[variables]
+SERVER_PORT = "25565"
+
 [launcher]
 eula_args = true
 nogui = true
@@ -145,11 +148,6 @@ version = "1.7+mod"
 
 [[mods]]
 type = "modrinth"
-id = "automaticons"
-version = "2.0+mod"
-
-[[mods]]
-type = "modrinth"
 id = "incendium"
 version = "7mVvV9Th"
 
@@ -157,3 +155,13 @@ version = "7mVvV9Th"
 type = "modrinth"
 id = "appleskin"
 version = "cHQjeYVS"
+
+[[mods]]
+type = "modrinth"
+id = "tectonic"
+version = "8uiKNgr3"
+
+[[mods]]
+type = "modrinth"
+id = "hopo-better-mineshaft"
+version = "HBsWqCQW"
