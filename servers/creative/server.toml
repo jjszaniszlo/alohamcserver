@@ -12,7 +12,7 @@ nogui = true
 
 [markdown]
 files = ["README.md"]
-auto_update = false
+auto_update = true
 
 [options]
 success_line = ""
@@ -42,3 +42,45 @@ version = "mc1.21.4-0.14.3-fabric"
 type = "modrinth"
 id = "worldedit"
 version = "7.3.10-beta-01"
+
+[[mods]]
+type = "modrinth"
+id = "vmp-fabric"
+version = "k1tcjmTr"
+
+[[mods]]
+type = "modrinth"
+id = "ferrite-core"
+version = "IPM0JlHd"
+
+[[mods]]
+type = "modrinth"
+id = "noisium"
+version = "9NHdQfkN"
+
+[[mods]]
+type = "modrinth"
+id = "recipecooldown"
+version = "oe5KEgWu"
+
+[[mods]]
+type = "modrinth"
+id = "view-distance-fix"
+version = "JHg6ZYop"
+
+[[mods]]
+type = "modrinth"
+id = "modernfix"
+version = "gx7PIV8n"
+
+[[mods]]
+type = "ghrel"
+repo = "gnembon/fabric-carpet"
+tag = "1.4.161"
+asset = "fabric-carpet-1.21.4-${tag}+v241203.jar"
+
+[[mods]]
+type = "ghrel"
+repo = "gnembon/carpet-extra"
+tag = "1.4.161"
+asset = "carpet-extra-1.21.4-${tag}.jar"

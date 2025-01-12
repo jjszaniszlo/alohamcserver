@@ -15,7 +15,7 @@ nogui = true
 
 [markdown]
 files = ["README.md"]
-auto_update = false
+auto_update = true
 
 [options]
 success_line = ""
@@ -24,22 +24,22 @@ stop_command = ""
 [[mods]]
 type = "modrinth"
 id = "fabricproxy-lite"
-version = "v2.9.0"
+version = "AQhF7kvw"
 
 [[mods]]
 type = "modrinth"
 id = "c2me-fabric"
-version = "0.3.1.1.0+1.21.4"
+version = "yGX4O0YU"
 
 [[mods]]
 type = "modrinth"
 id = "krypton"
-version = "0.2.8"
+version = "Acz3ttTp"
 
 [[mods]]
 type = "modrinth"
 id = "lithium"
-version = "mc1.21.4-0.14.3-fabric"
+version = "t1FlWYl9"
 
 [[mods]]
 type = "modrinth"
@@ -49,17 +49,12 @@ version = "lQreFvOm"
 [[mods]]
 type = "modrinth"
 id = "spawn-animations"
-version = "1.10+mod"
+version = "4q2qDUKg"
 
 [[mods]]
 type = "modrinth"
 id = "fabric-api"
-version = "0.114.2+1.21.4"
-
-[[mods]]
-type = "modrinth"
-id = "dungeons-and-taverns"
-version = "v4.6+mod"
+version = "8FAH9fuR"
 
 [[mods]]
 type = "modrinth"
@@ -70,11 +65,6 @@ version = "dHJAVX8s"
 type = "modrinth"
 id = "true-ending"
 version = "OegcvXrX"
-
-[[mods]]
-type = "modrinth"
-id = "dungeons-and-taverns-stronghold-overhaul"
-version = "v2.3+mod"
 
 [[mods]]
 type = "modrinth"
@@ -94,7 +84,7 @@ version = "31DRiEea"
 [[mods]]
 type = "modrinth"
 id = "more-mobs"
-version = "1.5.4+mod"
+version = "yZ3Dy1py"
 
 [[mods]]
 type = "modrinth"
@@ -104,47 +94,37 @@ version = "AYZsuKK8"
 [[mods]]
 type = "modrinth"
 id = "mastercutter"
-version = "1.5-mc1.21.4+mod"
+version = "VG8PuQZM"
 
 [[mods]]
 type = "modrinth"
 id = "better-bundle"
-version = "1.5.1-mc1.21.4+mod"
+version = "8NEGwk3X"
 
 [[mods]]
 type = "modrinth"
 id = "jakes-build-tools"
-version = "1.8.1+mod"
+version = "AoUxlIEZ"
 
 [[mods]]
 type = "modrinth"
 id = "reg-more-foods"
-version = "1.2.1+1.21.4+mod"
-
-[[mods]]
-type = "modrinth"
-id = "dungeons-and-taverns-swamp-hut-overhaul"
-version = "v2.1+mod"
+version = "3i4n47HR"
 
 [[mods]]
 type = "modrinth"
 id = "ketkets-furnicraft"
-version = "4.7+mod"
-
-[[mods]]
-type = "modrinth"
-id = "dungeons-and-taverns-woodland-mansion-replacement"
-version = "v1.4+mod"
+version = "YOUPmqmi"
 
 [[mods]]
 type = "modrinth"
 id = "colorful-trims"
-version = "1.8+mod"
+version = "5oYXZj69"
 
 [[mods]]
 type = "modrinth"
 id = "gardeners-dream"
-version = "1.7+mod"
+version = "Iv48v4cz"
 
 [[mods]]
 type = "modrinth"
@@ -165,3 +145,105 @@ version = "8uiKNgr3"
 type = "modrinth"
 id = "hopo-better-mineshaft"
 version = "HBsWqCQW"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns"
+version = "PAUVovtf"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-nether-fortress-overhaul"
+version = "2RoTZo1S"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-end-castle-standalone"
+version = "swvo49Be"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-pillager-outpost-overhaul"
+version = "4TcaQ5bc"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-woodland-mansion-replacement"
+version = "rIKtpRlB"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-swamp-hut-overhaul"
+version = "X7Zkca4c"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-stronghold-overhaul"
+version = "eZabSTZt"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-ocean-monument-replacement"
+version = "itCK7YcZ"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-desert-temple-replacement"
+version = "4dZzlZdy"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-jungle-temple-replacement"
+version = "Lmk8Cscm"
+
+[[mods]]
+type = "modrinth"
+id = "dungeons-and-taverns-ancient-city-overhaul"
+version = "hwJRJI7p"
+
+[[mods]]
+type = "modrinth"
+id = "vmp-fabric"
+version = "k1tcjmTr"
+
+[[mods]]
+type = "modrinth"
+id = "ferrite-core"
+version = "IPM0JlHd"
+
+[[mods]]
+type = "modrinth"
+id = "noisium"
+version = "9NHdQfkN"
+
+[[mods]]
+type = "modrinth"
+id = "recipecooldown"
+version = "oe5KEgWu"
+
+[[mods]]
+type = "modrinth"
+id = "view-distance-fix"
+version = "JHg6ZYop"
+
+[[mods]]
+type = "modrinth"
+id = "modernfix"
+version = "gx7PIV8n"
+
+[[mods]]
+type = "ghrel"
+repo = "gnembon/fabric-carpet"
+tag = "1.4.161"
+asset = "fabric-carpet-1.21.4-${tag}+v241203.jar"
+
+[[mods]]
+type = "ghrel"
+repo = "gnembon/carpet-extra"
+tag = "1.4.161"
+asset = "carpet-extra-1.21.4-${tag}.jar"
+
+[[mods]]
+type = "modrinth"
+id = "discarpet"
+version = "OJii3RPI"

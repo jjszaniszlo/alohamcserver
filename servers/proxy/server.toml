@@ -4,14 +4,22 @@ mc_version = "latest"
 [jar]
 type = "velocity"
 
+[variables]
+SERVER_PORT = "25565"
+
 [launcher]
+eula_args = true
 nogui = false
-proxy_flags = true
 
 [markdown]
 files = ["README.md"]
-auto_update = false
+auto_update = true
 
 [options]
 success_line = ""
 stop_command = ""
+
+[[plugins]]
+type = "modrinth"
+id = "velocitydiscord"
+version = "1.9.0"
