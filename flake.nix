@@ -8,18 +8,26 @@
     flux.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs}: let
+  outputs = {flux, nixpkgs, ...}: let
     supportedSystems = [
       "x86_64-linux"
     ];
 
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    pkgsFor = nixpkgs.legacyPackages;
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        flux.overlays.default
+      ];
+    };
+
+    forAllSystems = pkgs.lib.genAttrs supportedSystems;
   in {
     packages = forAllSystems (system: {
-      survival = pkgsFor.${system}.callPackage ./survival.nix {};
-      creative = pkgsFor.${system}.callPackage ./creative.nix {};
-      proxy = pkgsFor.${system}.callPackage ./proxy.nix {};
+      survival = pkgs.callPackage ./survival.nix {};
+      creative = pkgs.callPackage ./creative.nix {};
+      proxy = pkgs.callPackage ./proxy.nix {};
     });
   };
 }
