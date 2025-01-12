@@ -13,7 +13,7 @@ ping_interval = 30
 
 [discord]
 # Bot token from https://discordapp.com/developers/applications/
-token = "MTI1MDgzMzY2Nzk4Nzg2NTY4MQ.GCjUGd.EvqiK0KYQIsB5f0aOwbqe6U7Jr3PrWv17IYSpU"
+token = "MTI1MDgzMzY2Nzk4Nzg2NTY4MQ.GD9h85.eh7GIQiT9IXN0z89FhoNMc5V0JLZp2U0Wr_1Ik"
 # Channel ID to send Minecraft chat messages to
 channel = "1250793813019066430"
 
