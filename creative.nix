@@ -2,5 +2,5 @@
 pkgs.mkMinecraftServer {
     name = "creative";
     src = ./servers/creative;
-    hash = "";
+    hash = "sha256-RwTL1tQcZ/YXidxjPjgni1Xiw5nBSCnBtQb5tWrrl7Y=";
 }
