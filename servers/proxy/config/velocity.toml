@@ -2,7 +2,7 @@
 config-version = "2.7"
 
 # What port should the proxy be bound to? By default, we'll bind to all addresses on port 25565.
-bind = "0.0.0.0:25565"
+bind = "${BIND}"
 
 # What should be the MOTD? This gets displayed when the player adds your server to
 # their server list. Only MiniMessage format is accepted.
@@ -64,14 +64,13 @@ kick-existing-players = false
 #                  description and mod list.
 # - "all":         Uses the backend server's response as the proxy response. The Velocity
 #                  configuration is used if no servers could be contacted.
-ping-passthrough = "disabled"
+ping-passthrough = "all"
 
 # If not enabled (default is true) player IP addresses will be replaced by <ip address withheld> in logs
 enable-player-address-logging = true
 
 [servers]
-survival = "192.168.0.49:25566"
-creative = "192.168.0.49:25567"
+${NETWORK_VELOCITY_SERVERS}
 
 # In what order we should try servers when a player logs in or is kicked from a server.
 try = [

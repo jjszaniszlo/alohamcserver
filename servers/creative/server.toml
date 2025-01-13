@@ -10,6 +10,10 @@ installer = "latest"
 eula_args = true
 nogui = true
 
+[variables]
+PORT="25567"
+RCON_PORT="25577"
+
 [markdown]
 files = ["README.md"]
 auto_update = true
