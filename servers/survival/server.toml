@@ -7,6 +7,7 @@ loader = "latest"
 installer = "latest"
 
 [variables]
+VOICE_PORT = "24454"
 PORT = "25566"
 RCON_PORT = "25576"
 
@@ -246,5 +247,30 @@ asset = "carpet-extra-1.21.4-${tag}.jar"
 
 [[mods]]
 type = "modrinth"
-id = "discarpet"
-version = "OJii3RPI"
+id = "simple-voice-chat"
+version = "4Zzq92HE"
+
+[[mods]]
+type = "modrinth"
+id = "audioplayer"
+version = "fabric-1.21.4-1.13.2"
+
+[[mods]]
+type = "modrinth"
+id = "sound-physics-remastered"
+version = "fabric-1.21.4-1.4.8"
+
+[[mods]]
+type = "modrinth"
+id = "rei"
+version = "18.0.796+fabric"
+
+[[mods]]
+type = "modrinth"
+id = "architectury-api"
+version = "15.0.1+fabric"
+
+[[mods]]
+type = "modrinth"
+id = "cloth-config"
+version = "17.0.144+fabric"

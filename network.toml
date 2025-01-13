@@ -2,11 +2,11 @@ name = "Aloha Minecraft Network"
 proxy = "proxy"
 port = 25565
 
-[servers.creative]
-port = 25567
-
 [servers.survival]
 port = 25566
+
+[servers.creative]
+port = 25567
 
 [variables]
 MOTD = "Welcome to the ALOHA Snack Bar Minecraft Network!"

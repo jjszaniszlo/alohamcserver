@@ -8,8 +8,8 @@ type = "velocity"
 BIND = "0.0.0.0:25565"
 
 [launcher]
-eula_args = true
 nogui = false
+eula_args = true
 
 [markdown]
 files = ["README.md"]
@@ -23,3 +23,8 @@ stop_command = ""
 type = "modrinth"
 id = "velocitydiscord"
 version = "1.9.0"
+
+[[plugins]]
+type = "modrinth"
+id = "simple-voice-chat"
+version = "yGTasgG4"
