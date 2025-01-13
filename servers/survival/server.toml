@@ -7,9 +7,9 @@ loader = "latest"
 installer = "latest"
 
 [variables]
-VOICE_PORT = "24454"
 PORT = "25566"
 RCON_PORT = "25576"
+VOICE_PORT = "24454"
 
 [launcher]
 eula_args = true
@@ -284,4 +284,24 @@ version = "fabric-1.21.4-1.0.5"
 [[mods]]
 type = "modrinth"
 id = "litematica-server-paster"
-version = "v1.3.5-mc1.21.4"
+version = "IAWArkkG"
+
+[[mods]]
+type = "modrinth"
+id = "lmd"
+version = "e0AXgTFp"
+
+[[mods]]
+type = "modrinth"
+id = "chunky"
+version = "VkAgASL1"
+
+[[mods]]
+type = "modrinth"
+id = "do-a-barrel-roll"
+version = "3.8.1+1.21.4-fabric"
+
+[[mods]]
+type = "modrinth"
+id = "rightclickharvest"
+version = "lylk05D8"
