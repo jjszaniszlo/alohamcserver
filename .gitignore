@@ -6,8 +6,3 @@ mcman.exe
 *.mrpack
 # mcman: Exclude local dotenv files
 **/.env
-creative
-result
-result-creative
-result-survival
-result-proxy
