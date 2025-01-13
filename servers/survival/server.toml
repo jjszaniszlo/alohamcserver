@@ -14,6 +14,7 @@ RCON_PORT = "25576"
 [launcher]
 eula_args = true
 nogui = true
+memory = "12G"
 
 [markdown]
 files = ["README.md"]
@@ -274,3 +275,13 @@ version = "15.0.1+fabric"
 type = "modrinth"
 id = "cloth-config"
 version = "17.0.144+fabric"
+
+[[mods]]
+type = "modrinth"
+id = "inhabitor"
+version = "fabric-1.21.4-1.0.5"
+
+[[mods]]
+type = "modrinth"
+id = "litematica-server-paster"
+version = "v1.3.5-mc1.21.4"
