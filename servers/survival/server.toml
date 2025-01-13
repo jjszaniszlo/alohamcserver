@@ -305,3 +305,18 @@ version = "3.8.1+1.21.4-fabric"
 type = "modrinth"
 id = "rightclickharvest"
 version = "lylk05D8"
+
+[[mods]]
+type = "modrinth"
+id = "jamlib"
+version = "2J8TKset"
+
+[[mods]]
+type = "modrinth"
+id = "almanac"
+version = "inGMPti6"
+
+[[mods]]
+type = "modrinth"
+id = "cicada"
+version = "jevgCg03"
