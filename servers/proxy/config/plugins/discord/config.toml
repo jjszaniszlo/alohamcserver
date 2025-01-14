@@ -15,7 +15,7 @@ ping_interval = 30
 # Bot token from https://discordapp.com/developers/applications/
 token = "${DISCORD_BOT_TOKEN}"
 # Channel ID to send Minecraft chat messages to
-channel = "1250793813019066430"
+channel = "1251182287576371322"
 
 # Show messages from bots in Minecraft chat
 show_bot_messages = false
