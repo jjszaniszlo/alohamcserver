@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function rcon {
-    /user/local/bin/mcrcon -P 25577 -p ${MINECRAFT_RCON_PASSWORD} "$1"
+    /usr/local/bin/mcrcon -P 25577 -p ${MINECRAFT_RCON_PASSWORD} "$1"
 }
 
 rcon 'say [§4WARNING§r] Server backup process will begin in 5 minutes.'
