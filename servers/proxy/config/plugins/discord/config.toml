@@ -92,7 +92,7 @@ topic_player_list_max_count = 10
 
 [discord.webhook]
 # Full webhook URL to send more fancy Minecraft chat messages to
-webhook_url = "https://discord.com/api/webhooks/1250793853040984154/G75aRvApwQjfrRHO02_yzb9tHs3QjrYguJFFi0NiGZSGA37arS6CVsk4-lXUPIFdtR3Q"
+webhook_url = "https://discord.com/api/webhooks/1251182343398490244/8huFv1eIOHkDWEQx-cahey7MzzQAebPvkr28JZtyGJQyJZ0GxPsDpV9PGtirohVxka3m"
 # Full URL of an avatar service to get the player's avatar from
 # Placeholders available: {uuid}, {username}
 avatar_url = "https://visage.surgeplay.com/face/96/{uuid}"
