@@ -56,8 +56,9 @@ update_channel_topic_interval = 10
 # {average_ping} - Average ping of all players
 # {uptime} - Server uptime in hours and minutes
 # {server[SERVERNAME]} - Dynamic placeholder for each server's name and status (e.g., {server[MyServer]}, {server[AnotherServer]}, {server[Lobby]}, etc.)
-topic = """Aloha Minecraft Network | {players}/{max_players} | {uptime}
+topic = """Aloha Minecraft Network | mc.alohanetwork.us | {players}/{max_players}
 
+Uptime: {uptime}
 Avg. Ping: {average_ping}
 
 {servers} Active Server(s)!:
