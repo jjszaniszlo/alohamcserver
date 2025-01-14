@@ -278,16 +278,6 @@ version = "17.0.144+fabric"
 
 [[mods]]
 type = "modrinth"
-id = "inhabitor"
-version = "fabric-1.21.4-1.0.5"
-
-[[mods]]
-type = "modrinth"
-id = "litematica-server-paster"
-version = "IAWArkkG"
-
-[[mods]]
-type = "modrinth"
 id = "lmd"
 version = "e0AXgTFp"
 
@@ -298,25 +288,5 @@ version = "VkAgASL1"
 
 [[mods]]
 type = "modrinth"
-id = "do-a-barrel-roll"
-version = "3.8.1+1.21.4-fabric"
-
-[[mods]]
-type = "modrinth"
-id = "rightclickharvest"
-version = "lylk05D8"
-
-[[mods]]
-type = "modrinth"
-id = "jamlib"
-version = "2J8TKset"
-
-[[mods]]
-type = "modrinth"
 id = "almanac"
 version = "inGMPti6"
-
-[[mods]]
-type = "modrinth"
-id = "cicada"
-version = "PslsnPn1"
