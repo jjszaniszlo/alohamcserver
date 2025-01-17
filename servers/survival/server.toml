@@ -7,8 +7,8 @@ loader = "latest"
 installer = "latest"
 
 [variables]
-RCON_PORT = "25576"
 VOICE_PORT = "24454"
+RCON_PORT = "25576"
 PORT = "25566"
 
 [launcher]
@@ -305,3 +305,25 @@ version = "v5.4.150-fabric"
 type = "modrinth"
 id = "mysql-jdbc"
 version = "8.0.33+20230506"
+
+[[mods]]
+type = "modrinth"
+id = "styled-chat"
+version = "2.7.1+1.21.3"
+
+[[mods]]
+type = "modrinth"
+id = "placeholder-api"
+version = "2.5.1+1.21.3"
+
+[[mods]]
+type = "jenkins"
+url = "https://ci.lucko.me"
+job = "LuckPermsPlaceholders"
+build = "latest"
+artifact = "LuckPerms-Fabric-PlaceholderAPI-Hook.jar"
+
+[[mods]]
+type = "modrinth"
+id = "vanilla-permissions"
+version = "0.2.4+1.21.3"

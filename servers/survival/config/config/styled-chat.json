@@ -2,21 +2,21 @@
   "CONFIG_VERSION_DONT_TOUCH_THIS": 3,
   "_comment": "Before changing anything, see https://github.com/Patbox/StyledChat#configuration",
   "text_formatting": {
-    "legacy_formatting": false,
+    "legacy_formatting": true,
     "parse_links": true,
-    "parse_mentions": false,
+    "parse_mentions": true,
     "markdown": true,
     "respect_colors_client_setting": true
   },
   "auto_completion": {
-    "tags": false,
-    "tag_aliases": false,
-    "emoticons": false
+    "tags": true,
+    "tag_aliases": true,
+    "emoticons": true
   },
   "default": {
-    "display_name": "${default}",
+    "display_name": "<hover:'%luckperms:meta 'hover-text'%'>%luckperms:prefix% <hover:'Ping: <green>%player:ping%ms</green>\nPlaytime: <green>%player:playtime%</green>\nDiamonds Mined: <green>%player:statistic mined diamond_ore%</green>\nMob Kills: <green>%player:statistic mob_kills%</green>'>%player:name%",
     "message_formats": {
-      "chat": "<${player}> ${message}",
+      "chat": "%player:displayname% <dark_gray>»</dark_gray> ${message}",
       "joined_the_game": "<yellow><lang:multiplayer.player.joined:'${player}'></yellow>",
       "joined_after_name_change": "<yellow><lang:multiplayer.player.joined.renamed:'${player}':'${old_name}'></yellow>",
       "joined_for_first_time": "<yellow><lang:multiplayer.player.joined:'${player}'></yellow>",
@@ -77,44 +77,5 @@
     },
     "custom_message_types": {}
   },
-  "styles": [
-     {
-      "require": {
-        "type": "permission",
-        "permission": "group.developer",
-        "operator": 4
-      },
-      "display_name": "<aqua>[Developer]</aqua> ${vanillaDisplayName}",
-      "message_formats": {
-        "chat": "${player} <dark_gray>»</dark_gray> ${message}"
-      },
-      "formatting": {},
-      "emoticons": {}
-    },
-    {
-      "require": {
-        "type": "permission",
-        "permission": "group.adminlord",
-        "operator": 4
-      },
-      "display_name": "<dark_red>[Admin Lord]</dark_red> ${vanillaDisplayName}",
-      "message_formats": {
-        "chat": "${player} <dark_gray>»</dark_gray> ${message}"
-      },
-      "formatting": {},
-      "emoticons": {}
-    },
-    {
-      "require": {
-        "type": "permission",
-        "permission": "group.default"
-      },
-      "display_name": "<dark_green>[Aloheño]</dark_green> ${vanillaDisplayName}",
-      "message_formats": {
-        "chat": "${player} <dark_gray>»</dark_gray> ${message}"
-      },
-      "formatting": {},
-      "emoticons": {}
-    }
-  ]
+  "styles": []
 }
