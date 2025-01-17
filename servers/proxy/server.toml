@@ -1,5 +1,5 @@
 name = "proxy"
-mc_version = "latest"
+mc_version = "3.4.0-SNAPSHOT"
 
 [jar]
 type = "velocity"
@@ -21,10 +21,16 @@ stop_command = ""
 
 [[plugins]]
 type = "modrinth"
-id = "velocitydiscord"
-version = "1.9.0"
+id = "simple-voice-chat"
+version = "yGTasgG4"
 
 [[plugins]]
 type = "modrinth"
-id = "simple-voice-chat"
-version = "yGTasgG4"
+id = "luckperms"
+version = "v5.4.145-velocity"
+
+[[plugins]]
+type = "ghrel"
+repo = "beanbeanjuice/SimpleProxyChat"
+tag = "0.5.7"
+asset = "SimpleProxyChat-${tag}.jar"

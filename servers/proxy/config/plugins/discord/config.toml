@@ -15,7 +15,7 @@ ping_interval = 30
 # Bot token from https://discordapp.com/developers/applications/
 token = "${DISCORD_BOT_TOKEN}"
 # Channel ID to send Minecraft chat messages to
-channel = "1251182287576371322"
+channel = "${DISCORD_CHANNEL}"
 
 # Show messages from bots in Minecraft chat
 show_bot_messages = false
@@ -99,7 +99,7 @@ avatar_url = "https://visage.surgeplay.com/face/96/{uuid}"
 
 # The format of the webhook's username
 # Placeholders available: {username}, {server}
-webhook_username = "{username}"
+webhook_username = "[{server}] {username}:"
 
 # Minecraft > Discord message formats
 # Uses the same formatting as the Discord client (a subset of markdown)
@@ -115,7 +115,7 @@ webhook_username = "{username}"
 
 # Placeholders available: {username}, {prefix}, {server}, {message}
 # Can be disabled
-message = "{username}: {message}"
+message = "**[{server}]** {username}: {message}"
 
 # for user messages, the following types can be used
 # "text"    - Normal text only message with the above
@@ -151,7 +151,7 @@ disconnect_message_embed_color = "#bf4040"
 
 # Placeholders available: {username}, {prefix}, {current}, {previous}
 # Can be disabled
-server_switch_message = "**{username} moved to {current} from {previous}**"
+server_switch_message = "**{username} transferred from {previous} to {current}**"
 server_switch_message_type = "text"
 # Can be disabled
 server_switch_message_embed_color = "#40bf4f"
