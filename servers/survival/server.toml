@@ -7,9 +7,9 @@ loader = "latest"
 installer = "latest"
 
 [variables]
-PORT = "25566"
 RCON_PORT = "25576"
 VOICE_PORT = "24454"
+PORT = "25566"
 
 [launcher]
 eula_args = true
@@ -290,3 +290,18 @@ version = "VkAgASL1"
 type = "modrinth"
 id = "almanac"
 version = "inGMPti6"
+
+[[mods]]
+type = "modrinth"
+id = "dynmap"
+version = "ewsTwo6L"
+
+[[mods]]
+type = "modrinth"
+id = "luckperms"
+version = "v5.4.150-fabric"
+
+[[mods]]
+type = "modrinth"
+id = "mysql-jdbc"
+version = "8.0.33+20230506"
