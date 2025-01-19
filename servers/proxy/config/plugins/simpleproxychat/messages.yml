@@ -6,7 +6,7 @@
 # ==========================================================
 
 # Prefix for the plugin. %plugin-prefix% usable anywhere.
-plugin-prefix: '&8[<bold><rainbow>Proxy Chat&r&8]'
+plugin-prefix: '&8[<bold>Proxy Chat&8]'
 
 # Minecraft Stuff
 minecraft:
@@ -18,7 +18,7 @@ minecraft:
     message: '&e%player% &chas left the network. (%server%)'
   chat:
     enabled: true
-    message: '&8[&3%server%&8] %prefix% &e%player% &9» &7%message%'
+    message: '&8[&3%server%&8] %prefix% %player% &8» &7%message%'
     vanished: '&cYou cannot send proxy messages while vanished. Your message must end with a ''&e/&c'' to speak.'
   switch:
     enabled: true
@@ -30,9 +30,9 @@ minecraft:
     error: '&c/spc-whisper (user) (message)'
   discord:
     enabled: true
-    message: '**%server%** %player% » %message%'
+    message: '**%server%** %player% **»** %message%'
     embed:
-      use: false
+      use: true
       title: '[%server%] %player%'
       message: '%message%'
       color: '#FFC0CB'

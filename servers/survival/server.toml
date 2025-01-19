@@ -7,8 +7,8 @@ loader = "latest"
 installer = "latest"
 
 [variables]
-VOICE_PORT = "24454"
 RCON_PORT = "25576"
+VOICE_PORT = "24454"
 PORT = "25566"
 
 [launcher]
@@ -113,11 +113,6 @@ version = "AoUxlIEZ"
 type = "modrinth"
 id = "reg-more-foods"
 version = "3i4n47HR"
-
-[[mods]]
-type = "modrinth"
-id = "ketkets-furnicraft"
-version = "YOUPmqmi"
 
 [[mods]]
 type = "modrinth"
@@ -327,3 +322,23 @@ artifact = "LuckPerms-Fabric-PlaceholderAPI-Hook.jar"
 type = "modrinth"
 id = "vanilla-permissions"
 version = "0.2.4+1.21.3"
+
+[[mods]]
+type = "modrinth"
+id = "melius-essentials"
+version = "1.3.0+1.21.4"
+
+[[mods]]
+type = "modrinth"
+id = "servercore"
+version = "1.5.8+1.21.4"
+
+[[mods]]
+type = "modrinth"
+id = "image2map"
+version = "0.8.0+1.21.3"
+
+[[mods]]
+type = "modrinth"
+id = "styled-nicknames"
+version = "1.7.0+1.21.2"

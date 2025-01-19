@@ -14,7 +14,7 @@
     "emoticons": true
   },
   "default": {
-    "display_name": "<hover:'%luckperms:meta 'hover-text'%'>%luckperms:prefix% <hover:'Ping: <green>%player:ping%ms</green>\nPlaytime: <green>%player:playtime%</green>\nDiamonds Obtained: <green>%player:statistic mined deepslate_diamond_ore%</green>\nMob Kills: <green>%player:statistic mob_kills%</green>'>%player:name%",
+    "display_name": "<hover:'%luckperms:meta 'hover-text'%'>%luckperms:prefix% <hover:'Ping: <green>%player:ping%ms</green>\nPlaytime: <green>%player:playtime%</green>\nDiamonds Mined: <green>%player:statistic mined diamond_ore%</green>\nMob Kills: <green>%player:statistic mob_kills%</green>'>%player:name%",
     "message_formats": {
       "chat": "%player:displayname% <dark_gray>»</dark_gray> ${message}",
       "joined_the_game": "<yellow><lang:multiplayer.player.joined:'${player}'></yellow>",
@@ -62,7 +62,7 @@
     },
     "emoticons": {
       "$emojibase:builtin:joypixels": "${emoji}",
-      "shrug": "¯\\\\_(ツ)_/¯",
+      "shrug": "¯\\_(ツ)_/¯",
       "table": "(╯°□°）╯︵ ┻━┻",
       "sword": "🗡",
       "bow": "🏹",
@@ -72,7 +72,7 @@
       "shears": "✂",
       "bucket": "🪣",
       "bell": "🔔",
-      "item": "<dark_gray>[<purple>%player:equipment_slot mainhand%</purple>]</dark_gray>",
+      "item": "[%player:equipment_slot mainhand%]",
       "pos": "%player:pos_x% %player:pos_y% %player:pos_z%"
     },
     "custom_message_types": {}

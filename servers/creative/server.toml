@@ -7,8 +7,8 @@ loader = "latest"
 installer = "latest"
 
 [variables]
-VOICE_PORT = "24455"
 PORT = "25567"
+VOICE_PORT = "24455"
 RCON_PORT = "25577"
 
 [launcher]
@@ -125,3 +125,30 @@ version = "15.0.1+fabric"
 type = "modrinth"
 id = "cloth-config"
 version = "17.0.144+fabric"
+
+[[mods]]
+type = "modrinth"
+id = "luckperms"
+version = "v5.4.150-fabric"
+
+[[mods]]
+type = "modrinth"
+id = "styled-chat"
+version = "2.7.1+1.21.3"
+
+[[mods]]
+type = "modrinth"
+id = "placeholder-api"
+version = "2.5.1+1.21.3"
+
+[[mods]]
+type = "jenkins"
+url = "https://ci.lucko.me"
+job = "LuckPermsPlaceholders"
+build = "latest"
+artifact = "LuckPerms-Fabric-PlaceholderAPI-Hook.jar"
+
+[[mods]]
+type = "modrinth"
+id = "vanilla-permissions"
+version = "0.2.4+1.21.3"
