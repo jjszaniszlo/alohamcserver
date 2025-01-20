@@ -23,9 +23,9 @@ storage:
   type: mysql 
   hostname: dynmap-db 
   port: 3306
-  database: ${CFG_DYNMAP_DB} 
-  userid: ${CFG_DYNMAP_DB_USER} 
-  password: ${CFG_DYNMAP_DB_PASSWORD} 
+  database: CFG_DYNMAP_DB
+  userid: CFG_DYNMAP_DB_USER
+  password: CFG_DYNMAP_DB_PASSWORD
 
 components:
   - class: org.dynmap.ClientConfigurationComponent
