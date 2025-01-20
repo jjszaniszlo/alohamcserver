@@ -64,7 +64,7 @@ services:
       - mc-aloha-creative
   mc-aloha-survival:
     container_name: mc-aloha-survival
-    image: docker.io/jjszaniszlo/minecraft-server:temurin-23
+    build: .
     tty: true
     stdin_open: true
     restart: unless-stopped
@@ -84,6 +84,7 @@ services:
       VERSION: 1.21.4
       USE_AIKAR_FLAGS: true
       REPLACE_ENV_DURING_SYNC: true
+      COPY_CONFIG_DEST: /data
       CFG_SERVER_NAME: survival
       CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
       CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
@@ -142,6 +143,7 @@ services:
         melius-essentials:E0SDl3fV
         servercore:uJYh4tBK
         image2map:kkdbWskW
+        dynmap:ewsTwo6L
         styled-nicknames:GeyvBGqo
         worldedit:rIYOU6Ta
         incendium:7mVvV9Th
@@ -173,7 +175,7 @@ services:
       - mc-network
   mc-aloha-creative:
     container_name: mc-aloha-creative
-    image: docker.io/jjszaniszlo/minecraft-server:temurin-23
+    build: .
     tty: true
     stdin_open: true
     restart: unless-stopped
@@ -193,6 +195,7 @@ services:
       VERSION: 1.21.4
       USE_AIKAR_FLAGS: true
       REPLACE_ENV_DURING_SYNC: true
+      COPY_CONFIG_DEST: /data
       CFG_SERVER_NAME: creative
       CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
       CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
