@@ -1,0 +1,256 @@
+services:
+  luckperms-db:
+    container_name: luckperms-db
+    hostname: luckperms-db
+    image: mariadb
+    restart: unless-stopped
+    expose:
+      - 3306
+    volumes:
+      - luckperms-db-vol:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${LUCKPERMS_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${LUCKPERMS_DB}
+      MYSQL_USER: ${LUCKPERMS_DB_USER} 
+      MYSQL_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+    networks:
+      - mc-network
+  dynmap-db:
+    container_name: dynmap-db
+    hostname: dynmap-db
+    image: mariadb
+    restart: unless-stopped
+    expose:
+      - 3306
+    volumes:
+      - dynmap-db-vol:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DYNMAP_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DYNMAP_DB}
+      MYSQL_USER: ${DYNMAP_DB_USER} 
+      MYSQL_PASSWORD: ${DYNMAP_DB_PASSWORD}
+    networks:
+      - mc-network
+  mc-aloha-proxy:
+    image: itzg/mc-proxy
+    ports:
+      - "25565:25565/tcp"
+      - "25565:25565/udp"
+    volumes:
+      - mc-aloha-proxy-vol:/server
+      - ./config/proxy:/config
+    environment:
+      TYPE: VELOCITY
+      MINECRAFT_VERSION: 1.21.4
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      CFG_DISCORD_BOT_API_TOKEN: ${DISCORD_BOT_API_TOKEN}
+      CFG_DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      CFG_DISCORD_WEBHOOK: ${DISCORD_WEBHOOK}
+      MODRINTH_PROJECTS: |
+        simple-voice-chat:yGTasgG4
+        luckperms:vtXGoeps
+        simpleproxychat:FlwN6AtS
+    networks:
+      - mc-network
+    depends_on:
+      - luckperms-db
+      - mc-aloha-survival
+      - mc-aloha-creative
+  mc-aloha-survival:
+    container_name: mc-aloha-survival
+    image: docker.io/jjszaniszlo/minecraft-server:temurin-23
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    expose:
+      - "25565:25565/tcp"
+      - "24454:24454/udp"
+    volumes:
+      - mc-aloha-survival-vol:/data
+      - ./config/servers:/config
+    environment:
+      EULA: true
+      INIT_MEMORY: 4G
+      MAX_MEMORY: 16G
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 1.0.1
+      FABRIC_LOADER_VERSION: 0.16.10
+      VERSION: 1.21.4
+      USE_AIKAR_FLAGS: true
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_SERVER_NAME: survival
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      CFG_DYNMAP_DB: ${DYNMAP_DB}
+      CFG_DYNMAP_DB_USER: ${DYNMAP_DB_USER}
+      CFG_DYNMAP_DB_PASSWORD: ${DYNMAP_DB_PASSWORD}
+      SERVER_NAME: mc-aloha-survival
+      GAMEMODE: survival
+      DIFFICULTY: hard
+      RESOURCE_PACK: ${ALOHA_SURVIVAL_RESOURCE_PACK}
+      RESOURCE_PACK_SHA1: ${ALOHA_SURVIVAL_RESOURCE_PACK_SHA1}
+      RESOURCE_PACK_ENFORCE: true
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODRINTH_PROJECTS: |
+        fabricproxy-lite:AQhF7kvw
+        c2me-fabric:yGX4O0YU
+        krypton:Acz3ttTp
+        lithium:t1FlWYl9
+        vmp-fabric:ovEBHzIZ
+        ferrite-core:IPM0JlHd
+        noisium:9NHdQfkN
+        recipecooldown:oe5KEgWu
+        view-distance-fix:JHg6ZYop
+        modernfix:gx7PIV8n
+        entity-view-distance:DvEdX91O
+        scalablelux:DUpB8IQV
+        tt20:MjGahcCF
+        async:5k3VKog1
+        mobstacker:no2GrzSk
+        lmd:e0AXgTFp
+        mysql-jdbc:94JxXm7O
+        midnightlib:XVrBN1IF
+        appleskin:cHQjeYVS
+        placeholder-api:GtmqzyeE
+        servux:fKoMLUos
+        mastercutter:VG8PuQZM
+        vanilla-refresh:iZWeGQEX
+        better-bundle:8NEGwk3X
+        jakes-build-tools:AoUxlIEZ
+        reg-more-foods:3i4n47HR
+        more-mobs:yZ3Dy1py
+        spellbound-weapons:AYZsuKK8
+        true-ending:OegcvXrX
+        colorful-trims:5oYXZj69
+        gardeners-dream:nZGvmMKI
+        simple-voice-chat:4Zzq92HE
+        audioplayer:377C94c4
+        sound-physics-remastered:jtRGevsD
+        rei:aBHkMOqF
+        chunky:VkAgASL1
+        dynmap:ewsTwo6L
+        luckperms:6h9SnsZu
+        styled-chat:b7ivf9W5
+        vanilla-permissions:7awQNHzw
+        melius-essentials:E0SDl3fV
+        servercore:uJYh4tBK
+        image2map:kkdbWskW
+        styled-nicknames:GeyvBGqo
+        worldedit:rIYOU6Ta
+        incendium:7mVvV9Th
+        nullscape:dHJAVX8s
+        terralith:MuJMtPGQ
+        tectonic:8uiKNgr3
+        hopo-better-underwater-ruins:j5QsKFXs
+        hopo-better-ruined-portals:31DRiEea
+        hopo-better-mineshaft:HBsWqCQW
+        dungeons-and-taverns:kJdw4GRa
+        dungeons-and-taverns-nether-fortress-overhaul:2RoTZo1S
+        dungeons-and-taverns-end-castle-standalone:swvo49Be
+        dungeons-and-taverns-pillager-outpost-overhaul:4TcaQ5bc
+        dungeons-and-taverns-woodland-mansion-replacement:rIKtpRlB
+        dungeons-and-taverns-swamp-hut-overhaul:X7Zkca4c
+        dungeons-and-taverns-stronghold-overhaul:eZabSTZt
+        dungeons-and-taverns-ocean-monument-replacement:itCK7YcZ
+        dungeons-and-taverns-desert-temple-replacement:4dZzlZdy
+        dungeons-and-taverns-jungle-temple-replacement:Lmk8Cscm
+        dungeons-and-taverns-ancient-city-overhaul:hwJRJI7p
+      MODS: |
+        https://github.com/gnembon/fabric-carpet/releases/download/1.4.161/fabric-carpet-1.21.4-1.4.161+v241203.jar
+        https://github.com/gnembon/carpet-extra/releases/download/1.4.161/carpet-extra-1.21.4-1.4.161.jar
+        https://ci.lucko.me/job/LuckPermsPlaceholders/lastSuccessfulBuild/artifact/fabric-placeholderapi/build/libs/LuckPerms-Fabric-PlaceholderAPI-Hook.jar
+    depends_on:
+      - luckperms-db
+      - dynmap-db
+    networks:
+      - mc-network
+  mc-aloha-creative:
+    container_name: mc-aloha-creative
+    image: docker.io/jjszaniszlo/minecraft-server:temurin-23
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    expose:
+      - "25565:25565/tcp"
+      - "24454:24454/udp"
+    volumes:
+      - mc-aloha-creative-vol:/data
+      - ./config/servers:/config
+    environment:
+      EULA: "TRUE"
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 3G
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 1.0.1
+      FABRIC_LOADER_VERSION: 0.16.10
+      VERSION: 1.21.4
+      USE_AIKAR_FLAGS: true
+      REPLACE_ENV_DURING_SYNC: true
+      CFG_SERVER_NAME: creative
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      SERVER_NAME: mc-aloha-creative
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODRINTH_PROJECTS: |
+        fabricproxy-lite:AQhF7kvw
+        c2me-fabric:yGX4O0YU
+        krypton:Acz3ttTp
+        lithium:t1FlWYl9
+        vmp-fabric:ovEBHzIZ
+        ferrite-core:IPM0JlHd
+        noisium:9NHdQfkN
+        recipecooldown:oe5KEgWu
+        view-distance-fix:JHg6ZYop
+        modernfix:gx7PIV8n
+        entity-view-distance:DvEdX91O
+        scalablelux:DUpB8IQV
+        tt20:MjGahcCF
+        async:5k3VKog1
+        mobstacker:no2GrzSk
+        lmd:e0AXgTFp
+        mysql-jdbc:94JxXm7O
+        midnightlib:XVrBN1IF
+        appleskin:cHQjeYVS
+        placeholder-api:GtmqzyeE
+        servux:fKoMLUos
+        simple-voice-chat:4Zzq92HE
+        audioplayer:377C94c4
+        sound-physics-remastered:jtRGevsD
+        rei:aBHkMOqF
+        luckperms:6h9SnsZu
+        styled-chat:b7ivf9W5
+        vanilla-permissions:7awQNHzw
+        melius-essentials:E0SDl3fV
+        servercore:uJYh4tBK
+        image2map:kkdbWskW
+        styled-nicknames:GeyvBGqo
+        worldedit:rIYOU6Ta
+      MODS: |
+        https://github.com/gnembon/fabric-carpet/releases/download/1.4.161/fabric-carpet-1.21.4-1.4.161+v241203.jar
+        https://github.com/gnembon/carpet-extra/releases/download/1.4.161/carpet-extra-1.21.4-1.4.161.jar
+        https://ci.lucko.me/job/LuckPermsPlaceholders/lastSuccessfulBuild/artifact/fabric-placeholderapi/build/libs/LuckPerms-Fabric-PlaceholderAPI-Hook.jar
+    depends_on:
+      - luckperms-db
+    networks:
+      - mc-network
+
+volumes:
+  luckperms-db-vol: {}
+  dynmap-db-vol: {}
+  mc-aloha-survival-vol: {}
+  mc-aloha-creative-vol: {}
+  mc-aloha-proxy-vol: {}
+
+networks:
+  mc-network:
+    driver: bridge
