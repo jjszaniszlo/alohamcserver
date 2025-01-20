@@ -10,7 +10,7 @@ services:
       - luckperms-db-vol:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
     environment:
-      MYSQL_ROOT_PASSWORD: ${LUCKPERMS_DB_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${LUCKPERMS_DB}
       MYSQL_USER: ${LUCKPERMS_DB_USER} 
       MYSQL_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
@@ -27,7 +27,7 @@ services:
       - dynmap-db-vol:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
     environment:
-      MYSQL_ROOT_PASSWORD: ${DYNMAP_DB_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DYNMAP_DB}
       MYSQL_USER: ${DYNMAP_DB_USER} 
       MYSQL_PASSWORD: ${DYNMAP_DB_PASSWORD}
