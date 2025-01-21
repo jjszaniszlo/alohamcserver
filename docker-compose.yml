@@ -1,4 +1,20 @@
 services:
+  rcon:
+    container_name: mc-rcon
+    image: itzg/rcon
+    ports:
+      - 4326:4326
+      - 4327:4327
+    environment:
+      RWA_RCON_PASSWORD: ${MC_RCON_PASSWORD}
+      RWA_ADMIN: "TRUE"
+      RWA_USERNAME: admin
+      RWA_PASSWORD: ${MC_RCON_USER_ADMIN_PASSWORD}
+      RWA_RCON_HOST: mc-aloha-survival
+    volumes:
+      - rcon-vol:/opt/rcon-web-admin/db
+    networks:
+      - mc-rcon
   luckperms-db:
     container_name: luckperms-db
     hostname: luckperms-db
@@ -34,6 +50,7 @@ services:
     networks:
       - mc-network
   mc-aloha-proxy:
+    container_name: mc-aloha-proxy
     image: itzg/mc-proxy
     ports:
       - "25565:25565/tcp"
@@ -44,7 +61,8 @@ services:
     environment:
       TYPE: VELOCITY
       MINECRAFT_VERSION: 1.21.4
-      REPLACE_ENV_DURING_SYNC: true
+      REPLACE_ENV_DURING_SYNC: "TRUE"
+      ICON: ${SERVER_ICON}
       CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
       CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
       CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
@@ -71,19 +89,26 @@ services:
     expose:
       - "25565:25565/tcp"
       - "24454:24454/udp"
+      - 25575:25575
+    ports:
+      - "25567:25567"
     volumes:
       - mc-aloha-survival-vol:/data
       - ./config/servers:/config
     environment:
-      EULA: true
+      SERVER_NAME: mc-aloha-survival
+      EULA: "TRUE"
       INIT_MEMORY: 4G
       MAX_MEMORY: 16G
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
       VERSION: 1.21.4
+      GAMEMODE: survival
+      DIFFICULTY: hard
+      RCON_PASSWORD: ${MC_RCON_PASSWORD}
       USE_AIKAR_FLAGS: true
-      REPLACE_ENV_DURING_SYNC: true
+      REPLACE_ENV_DURING_SYNC: "TRUE"
       COPY_CONFIG_DEST: /data
       CFG_SERVER_NAME: survival
       CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
@@ -93,12 +118,7 @@ services:
       CFG_DYNMAP_DB: ${DYNMAP_DB}
       CFG_DYNMAP_DB_USER: ${DYNMAP_DB_USER}
       CFG_DYNMAP_DB_PASSWORD: ${DYNMAP_DB_PASSWORD}
-      SERVER_NAME: mc-aloha-survival
-      GAMEMODE: survival
-      DIFFICULTY: hard
-      RESOURCE_PACK: ${ALOHA_SURVIVAL_RESOURCE_PACK}
-      RESOURCE_PACK_SHA1: ${ALOHA_SURVIVAL_RESOURCE_PACK_SHA1}
-      RESOURCE_PACK_ENFORCE: true
+      CFG_POLYMER_RESOURCE_PACK_PORT: 25567
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       MODRINTH_PROJECTS: |
         fabricproxy-lite:AQhF7kvw
@@ -121,6 +141,7 @@ services:
         midnightlib:XVrBN1IF
         appleskin:cHQjeYVS
         placeholder-api:GtmqzyeE
+        polymer:O0WRTnsC
         servux:fKoMLUos
         mastercutter:VG8PuQZM
         vanilla-refresh:iZWeGQEX
@@ -132,6 +153,10 @@ services:
         true-ending:OegcvXrX
         colorful-trims:5oYXZj69
         gardeners-dream:nZGvmMKI
+        polydecorations:dhJ5QuLH
+        armorstandeditor:EPNBOZZ7
+        toms-mobs:YbEti9ns
+        universal-shops:URt0BiPz
         simple-voice-chat:4Zzq92HE
         audioplayer:377C94c4
         sound-physics-remastered:jtRGevsD
@@ -173,6 +198,7 @@ services:
       - dynmap-db
     networks:
       - mc-network
+      - mc-rcon
   mc-aloha-creative:
     container_name: mc-aloha-creative
     build: .
@@ -182,10 +208,14 @@ services:
     expose:
       - "25565:25565/tcp"
       - "24454:24454/udp"
+      - 25575:25575
+    ports:
+      - "25568:25568"
     volumes:
       - mc-aloha-creative-vol:/data
       - ./config/servers:/config
     environment:
+      SERVER_NAME: mc-aloha-creative
       EULA: "TRUE"
       INIT_MEMORY: 1G
       MAX_MEMORY: 3G
@@ -195,13 +225,14 @@ services:
       VERSION: 1.21.4
       USE_AIKAR_FLAGS: true
       REPLACE_ENV_DURING_SYNC: true
+      RCON_PASSWORD: ${MC_RCON_PASSWORD}
       COPY_CONFIG_DEST: /data
       CFG_SERVER_NAME: creative
       CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
       CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
       CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
       CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
-      SERVER_NAME: mc-aloha-creative
+      CFG_POLYMER_RESOURCE_PACK_PORT: 25568
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       MODRINTH_PROJECTS: |
         fabricproxy-lite:AQhF7kvw
@@ -219,11 +250,13 @@ services:
         tt20:MjGahcCF
         async:5k3VKog1
         mobstacker:no2GrzSk
+        armorstandeditor:EPNBOZZ7
         lmd:e0AXgTFp
         mysql-jdbc:94JxXm7O
         midnightlib:XVrBN1IF
         appleskin:cHQjeYVS
         placeholder-api:GtmqzyeE
+        polymer:O0WRTnsC
         servux:fKoMLUos
         simple-voice-chat:4Zzq92HE
         audioplayer:377C94c4
@@ -245,8 +278,10 @@ services:
       - luckperms-db
     networks:
       - mc-network
+      - mc-rcon
 
 volumes:
+  rcon-vol: {}
   luckperms-db-vol: {}
   dynmap-db-vol: {}
   mc-aloha-survival-vol: {}
@@ -255,4 +290,6 @@ volumes:
 
 networks:
   mc-network:
+    driver: bridge
+  mc-rcon:
     driver: bridge
