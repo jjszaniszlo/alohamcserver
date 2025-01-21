@@ -10,7 +10,7 @@
   "_c4": "Configuration of type, see provider's source for more details",
   "settings": {
     "port": ${CFG_POLYMER_RESOURCE_PACK_PORT},
-    "external_address": "http://localhost:${CFG_POLYMER_RESOURCE_PACK_PORT}/"
+    "external_address": "http://${CFG_POLYMER_HOSTNAME}:${CFG_POLYMER_RESOURCE_PACK_PORT}/"
   },
   "_c5": "Message sent to clients before pack is loaded",
   "message": "This server uses resource pack to enhance gameplay with custom textures and models. It might be unplayable without them.",
