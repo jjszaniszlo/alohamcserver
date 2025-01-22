@@ -98,8 +98,7 @@ services:
     environment:
       SERVER_NAME: mc-aloha-survival
       EULA: "TRUE"
-      INIT_MEMORY: 2G
-      MAX_MEMORY: 6G
+      MAX_MEMORY: 4G
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
@@ -120,6 +119,8 @@ services:
       CFG_DYNMAP_DB_PASSWORD: ${DYNMAP_DB_PASSWORD}
       CFG_POLYMER_RESOURCE_PACK_PORT: 25567
       CFG_POLYMER_HOSTNAME: mc-aloha-survival
+      RESOURCE_PACK: ${RESOURCE_PACK_URL}
+      RESOURCE_PACK_SHA1: ${RESOURCE_PACK_SHA1}
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
       MODRINTH_PROJECTS: |
         fabricproxy-lite:AQhF7kvw
@@ -136,7 +137,6 @@ services:
         scalablelux:DUpB8IQV
         tt20:MjGahcCF
         async:5k3VKog1
-        mobstacker:no2GrzSk
         lmd:e0AXgTFp
         mysql-jdbc:94JxXm7O
         midnightlib:XVrBN1IF
@@ -218,8 +218,7 @@ services:
     environment:
       SERVER_NAME: mc-aloha-creative
       EULA: "TRUE"
-      INIT_MEMORY: 1G
-      MAX_MEMORY: 2G
+      MAX_MEMORY: 1G
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
@@ -263,7 +262,6 @@ services:
         scalablelux:DUpB8IQV
         tt20:MjGahcCF
         async:5k3VKog1
-        mobstacker:no2GrzSk
         armorstandeditor:EPNBOZZ7
         lmd:e0AXgTFp
         mysql-jdbc:94JxXm7O
