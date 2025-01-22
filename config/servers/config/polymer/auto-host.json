@@ -1,8 +1,8 @@
 {
   "_c1": "Enables Polymer's ResourcePack Auto Hosting",
-  "enabled": true,
+  "enabled": false,
   "_c2": "Marks resource pack as required",
-  "required": true,
+  "required": false,
   "_c7": "Mods may override the above setting and make the resource pack required, set this to false to disable that.",
   "mod_override": true,
   "_c3": "Type of resource pack provider. Default: 'polymer:automatic'",
