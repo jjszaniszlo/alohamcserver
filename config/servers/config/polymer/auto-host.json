@@ -1,16 +1,16 @@
 {
   "_c1": "Enables Polymer's ResourcePack Auto Hosting",
-  "enabled": false,
+  "enabled": true,
   "_c2": "Marks resource pack as required",
   "required": false,
   "_c7": "Mods may override the above setting and make the resource pack required, set this to false to disable that.",
   "mod_override": true,
   "_c3": "Type of resource pack provider. Default: 'polymer:automatic'",
-  "type": "polymer:http_server",
+  "type": "polymer:standalone",
   "_c4": "Configuration of type, see provider's source for more details",
   "settings": {
-    "port": ${CFG_POLYMER_RESOURCE_PACK_PORT},
-    "external_address": "http://${CFG_POLYMER_HOSTNAME}:${CFG_POLYMER_RESOURCE_PACK_PORT}/"
+    "port": ${CFG_POLYMER_PORT},
+    "external_address": "http://localhost:${CFG_POLYMER_PORT}/"
   },
   "_c5": "Message sent to clients before pack is loaded",
   "message": "This server uses resource pack to enhance gameplay with custom textures and models. It might be unplayable without them.",
