@@ -92,13 +92,22 @@ services:
       - 25575:25575
     ports:
       - "25567:25567"
+      - "8123:8123"
     volumes:
       - mc-aloha-survival-vol:/data
       - ./config/servers:/config
     environment:
       SERVER_NAME: mc-aloha-survival
       EULA: "TRUE"
-      MAX_MEMORY: 4G
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 14G
+      JVM_XX_OPTS: |
+        -XX:+UnlockExperimentalVMOptions
+        -XX:G1NewSizePercent=40
+        -XX:G1MaxNewSizePercent=50
+        -XX:G1HeapRegionSize=16M
+        -XX:G1ReservePercent=15
+        -XX:InitiatingHeapOccupancyPercent=20
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
@@ -169,7 +178,6 @@ services:
         melius-essentials:E0SDl3fV
         servercore:uJYh4tBK
         image2map:kkdbWskW
-        dynmap:ewsTwo6L
         styled-nicknames:GeyvBGqo
         worldedit:rIYOU6Ta
         incendium:7mVvV9Th
@@ -218,7 +226,8 @@ services:
     environment:
       SERVER_NAME: mc-aloha-creative
       EULA: "TRUE"
-      MAX_MEMORY: 1G
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 2G
       TYPE: FABRIC
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
