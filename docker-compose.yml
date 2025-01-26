@@ -3,8 +3,8 @@ services:
     container_name: mc-rcon
     image: itzg/rcon
     ports:
-      - "4326:4326"
-      - "4327:4327"
+      - 4326
+      - 4327
     environment:
       RWA_RCON_PASSWORD: ${MC_RCON_PASSWORD}
       RWA_ADMIN: "TRUE"
@@ -55,8 +55,8 @@ services:
     hostname: mc-aloha-proxy
     image: itzg/mc-proxy
     ports:
-      - "25565:25565/tcp"
-      - "25565:25565/udp"
+      - "25565/tcp"
+      - "25565/udp"
     volumes:
       - mc-aloha-proxy-vol:/server
       - ./config/proxy:/config
@@ -91,12 +91,12 @@ services:
     stdin_open: true
     restart: unless-stopped
     expose:
-      - "25565:25565/tcp"
-      - "24454:24454/udp"
-      - "25575:25575"
+      - "25565/tcp"
+      - "24454/udp"
+      - "25575"
     ports:
-      - "25588:25588"
-      - "8123:8123"
+      - "25567"
+      - "8123"
     volumes:
       - mc-aloha-survival-vol:/data
       - ./config/servers:/config
@@ -119,7 +119,7 @@ services:
       MODE: survival
       DIFFICULTY: hard
       RCON_PASSWORD: ${MC_RCON_PASSWORD}
-      USE_AIKAR_FLAGS: true
+      USE_AIKAR_FLAGS: "TRUE"
       REPLACE_ENV_DURING_SYNC: "TRUE"
       COPY_CONFIG_DEST: /data
       CFG_SERVER_NAME: survival
@@ -221,11 +221,11 @@ services:
     stdin_open: true
     restart: unless-stopped
     expose:
-      - "25565:25565/tcp"
-      - "24454:24454/udp"
-      - "25575:25575"
+      - "25565/tcp"
+      - "24454/udp"
+      - "25575"
     ports:
-      - "25589:25589"
+      - "25568"
     volumes:
       - mc-aloha-creative-vol:/data
       - ./config/servers:/config
@@ -238,8 +238,8 @@ services:
       FABRIC_LAUNCHER_VERSION: 1.0.1
       FABRIC_LOADER_VERSION: 0.16.10
       VERSION: 1.21.4
-      USE_AIKAR_FLAGS: true
-      REPLACE_ENV_DURING_SYNC: true
+      USE_AIKAR_FLAGS: "TRUE"
+      REPLACE_ENV_DURING_SYNC: "TRUE"
       RCON_PASSWORD: ${MC_RCON_PASSWORD}
       MODE: creative
       LEVEL_TYPE: FLAT
