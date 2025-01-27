@@ -3,8 +3,8 @@ services:
     container_name: mc-rcon
     image: itzg/rcon
     ports:
-      - 4326
-      - 4327
+      - 4326:4326
+      - 4327:4327
     environment:
       RWA_RCON_PASSWORD: ${MC_RCON_PASSWORD}
       RWA_ADMIN: "TRUE"
@@ -15,7 +15,6 @@ services:
       - rcon-vol:/opt/rcon-web-admin/db
     networks:
       - mc-rcon
-      - proxy-net
   luckperms-db:
     container_name: luckperms-db
     hostname: luckperms-db
@@ -55,8 +54,8 @@ services:
     hostname: mc-aloha-proxy
     image: itzg/mc-proxy
     ports:
-      - "25565/tcp"
-      - "25565/udp"
+      - "25565:25565/tcp"
+      - "25565:25565/udp"
     volumes:
       - mc-aloha-proxy-vol:/server
       - ./config/proxy:/config
@@ -78,7 +77,6 @@ services:
         simpleproxychat:FlwN6AtS
     networks:
       - mc-network
-      - proxy-net
     depends_on:
       - luckperms-db
       - mc-aloha-survival
@@ -91,12 +89,9 @@ services:
     stdin_open: true
     restart: unless-stopped
     expose:
-      - "25565/tcp"
-      - "24454/udp"
-      - "25575"
-    ports:
-      - "25567"
-      - "8123"
+      - "25565:25565/tcp"
+      - "25565:24454/udp"
+      - "25575:25575"
     volumes:
       - mc-aloha-survival-vol:/data
       - ./config/servers:/config
@@ -212,7 +207,6 @@ services:
     networks:
       - mc-network
       - mc-rcon
-      - proxy-net
   mc-aloha-creative:
     container_name: mc-aloha-creative
     hostname: mc-aloha-creative
@@ -221,11 +215,9 @@ services:
     stdin_open: true
     restart: unless-stopped
     expose:
-      - "25565/tcp"
-      - "24454/udp"
-      - "25575"
-    ports:
-      - "25568"
+      - "25565:25565/tcp"
+      - "25565:24454/udp"
+      - "25575:25575"
     volumes:
       - mc-aloha-creative-vol:/data
       - ./config/servers:/config
@@ -306,7 +298,6 @@ services:
     networks:
       - mc-network
       - mc-rcon
-      - proxy-net
 
 volumes:
   rcon-vol: {}
@@ -321,4 +312,3 @@ networks:
     driver: bridge
   mc-rcon:
     driver: bridge
-  proxy-net:
