@@ -4,4 +4,4 @@ This is the docker compose configuration for a Minecraft network consisting of 2
 
 The Minecraft services are based on the itzg/minecraft images but are being built with Eclipse Temurin 23 as can be seen within the Dockerfile.
 
-Take a look at [the official github for itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) for more info.
+Take a look at [the official github repo for itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) for more info.
