@@ -1,42 +1,314 @@
 services:
-  # velocity MC powered proxy
-  proxy-server:
-    image: alohanetworks/proxy
-    build:
-      context: servers/proxy
-      dockerfile: Dockerfile
+  rcon:
+    container_name: mc-rcon
+    image: itzg/rcon
     ports:
-      - "25565:25565"
+      - 4326:4326
+      - 4327:4327
+    environment:
+      RWA_RCON_PASSWORD: ${MC_RCON_PASSWORD}
+      RWA_ADMIN: "TRUE"
+      RWA_USERNAME: admin
+      RWA_PASSWORD: ${MC_RCON_USER_ADMIN_PASSWORD}
+      RWA_RCON_HOST: mc-aloha-survival
+    volumes:
+      - rcon-vol:/opt/rcon-web-admin/db
+    networks:
+      - mc-rcon
+  luckperms-db:
+    container_name: luckperms-db
+    hostname: luckperms-db
+    image: mariadb
+    restart: unless-stopped
+    expose:
+      - 3306
+    volumes:
+      - luckperms-db-vol:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${LUCKPERMS_DB}
+      MYSQL_USER: ${LUCKPERMS_DB_USER} 
+      MYSQL_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+    networks:
+      - mc-network
+  dynmap-db:
+    container_name: dynmap-db
+    hostname: dynmap-db
+    image: mariadb
+    restart: unless-stopped
+    expose:
+      - 3306
+    volumes:
+      - dynmap-db-vol:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password --wait-timeout=28800'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DYNMAP_DB}
+      MYSQL_USER: ${DYNMAP_DB_USER} 
+      MYSQL_PASSWORD: ${DYNMAP_DB_PASSWORD}
+    networks:
+      - mc-network
+  mc-aloha-proxy:
+    container_name: mc-aloha-proxy
+    hostname: mc-aloha-proxy
+    image: itzg/mc-proxy
+    ports:
+      - "25565:25565/tcp"
       - "25565:25565/udp"
+    volumes:
+      - mc-aloha-proxy-vol:/server
+      - ./config/proxy:/config
+    environment:
+      TYPE: VELOCITY
+      MINECRAFT_VERSION: 1.21.4
+      REPLACE_ENV_DURING_SYNC: "TRUE"
+      ICON: ${SERVER_ICON}
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      CFG_DISCORD_BOT_API_TOKEN: ${DISCORD_BOT_API_TOKEN}
+      CFG_DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      CFG_DISCORD_WEBHOOK: ${DISCORD_WEBHOOK}
+      MODRINTH_PROJECTS: |
+        simple-voice-chat:yGTasgG4
+        luckperms:vtXGoeps
+        simpleproxychat:FlwN6AtS
     networks:
-      - proxy-net
-      - default
+      - mc-network
+    depends_on:
+      - luckperms-db
+      - mc-aloha-survival
+      - mc-aloha-creative
+  mc-aloha-survival:
+    container_name: mc-aloha-survival
+    hostname: mc-aloha-survival
+    build: .
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    expose:
+      - "25565:25565/tcp"
+      - "25565:24454/udp"
+      - "25575:25575"
+    volumes:
+      - mc-aloha-survival-vol:/data
+      - ./config/servers:/config
+    environment:
+      SERVER_NAME: mc-aloha-survival
+      EULA: "TRUE"
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 14G
+      JVM_XX_OPTS: |
+        -XX:+UnlockExperimentalVMOptions
+        -XX:G1NewSizePercent=40
+        -XX:G1MaxNewSizePercent=50
+        -XX:G1HeapRegionSize=16M
+        -XX:G1ReservePercent=15
+        -XX:InitiatingHeapOccupancyPercent=20
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 1.0.1
+      FABRIC_LOADER_VERSION: 0.16.10
+      VERSION: 1.21.4
+      MODE: survival
+      DIFFICULTY: hard
+      RCON_PASSWORD: ${MC_RCON_PASSWORD}
+      USE_AIKAR_FLAGS: "TRUE"
+      REPLACE_ENV_DURING_SYNC: "TRUE"
+      COPY_CONFIG_DEST: /data
+      CFG_SERVER_NAME: survival
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      CFG_DYNMAP_DB: ${DYNMAP_DB}
+      CFG_DYNMAP_DB_USER: ${DYNMAP_DB_USER}
+      CFG_DYNMAP_DB_PASSWORD: ${DYNMAP_DB_PASSWORD}
+      CFG_POLYMER_PORT: 25588
+      CFG_POLYMER_HOST: mc-aloha-survival
+      RESOURCE_PACK: ${RESOURCE_PACK_URL}
+      RESOURCE_PACK_SHA1: ${RESOURCE_PACK_SHA1}
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODRINTH_PROJECTS: |
+        fabricproxy-lite:AQhF7kvw
+        c2me-fabric:yGX4O0YU
+        krypton:Acz3ttTp
+        lithium:t1FlWYl9
+        vmp-fabric:ovEBHzIZ
+        ferrite-core:IPM0JlHd
+        noisium:9NHdQfkN
+        recipecooldown:oe5KEgWu
+        view-distance-fix:JHg6ZYop
+        modernfix:gx7PIV8n
+        entity-view-distance:DvEdX91O
+        scalablelux:DUpB8IQV
+        tt20:MjGahcCF
+        async:5k3VKog1
+        lmd:e0AXgTFp
+        mysql-jdbc:94JxXm7O
+        midnightlib:XVrBN1IF
+        appleskin:cHQjeYVS
+        placeholder-api:GtmqzyeE
+        polymer:O0WRTnsC
+        servux:fKoMLUos
+        mastercutter:VG8PuQZM
+        vanilla-refresh:iZWeGQEX
+        better-bundle:8NEGwk3X
+        jakes-build-tools:AoUxlIEZ
+        reg-more-foods:3i4n47HR
+        more-mobs:yZ3Dy1py
+        spellbound-weapons:AYZsuKK8
+        true-ending:OegcvXrX
+        colorful-trims:5oYXZj69
+        gardeners-dream:nZGvmMKI
+        polydecorations:dhJ5QuLH
+        armorstandeditor:EPNBOZZ7
+        toms-mobs:YbEti9ns
+        universal-shops:URt0BiPz
+        simple-voice-chat:4Zzq92HE
+        audioplayer:377C94c4
+        sound-physics-remastered:jtRGevsD
+        rei:aBHkMOqF
+        chunky:VkAgASL1
+        luckperms:6h9SnsZu
+        styled-chat:b7ivf9W5
+        vanilla-permissions:7awQNHzw
+        melius-essentials:E0SDl3fV
+        servercore:uJYh4tBK
+        image2map:kkdbWskW
+        styled-nicknames:GeyvBGqo
+        worldedit:rIYOU6Ta
+        incendium:7mVvV9Th
+        nullscape:dHJAVX8s
+        terralith:MuJMtPGQ
+        tectonic:8uiKNgr3
+        hopo-better-underwater-ruins:j5QsKFXs
+        hopo-better-ruined-portals:31DRiEea
+        hopo-better-mineshaft:HBsWqCQW
+        dungeons-and-taverns:kJdw4GRa
+        dungeons-and-taverns-nether-fortress-overhaul:2RoTZo1S
+        dungeons-and-taverns-end-castle-standalone:swvo49Be
+        dungeons-and-taverns-pillager-outpost-overhaul:4TcaQ5bc
+        dungeons-and-taverns-woodland-mansion-replacement:rIKtpRlB
+        dungeons-and-taverns-swamp-hut-overhaul:X7Zkca4c
+        dungeons-and-taverns-stronghold-overhaul:eZabSTZt
+        dungeons-and-taverns-ocean-monument-replacement:itCK7YcZ
+        dungeons-and-taverns-desert-temple-replacement:4dZzlZdy
+        dungeons-and-taverns-jungle-temple-replacement:Lmk8Cscm
+        dungeons-and-taverns-ancient-city-overhaul:hwJRJI7p
+      MODS: |
+        https://github.com/gnembon/fabric-carpet/releases/download/1.4.161/fabric-carpet-1.21.4-1.4.161+v241203.jar
+        https://github.com/gnembon/carpet-extra/releases/download/1.4.161/carpet-extra-1.21.4-1.4.161.jar
+        https://ci.lucko.me/job/LuckPermsPlaceholders/lastSuccessfulBuild/artifact/fabric-placeholderapi/build/libs/LuckPerms-Fabric-PlaceholderAPI-Hook.jar
+    depends_on:
+      - luckperms-db
+      - dynmap-db
+    networks:
+      - mc-network
+      - mc-rcon
+  mc-aloha-creative:
+    container_name: mc-aloha-creative
+    hostname: mc-aloha-creative
+    build: .
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    expose:
+      - "25565:25565/tcp"
+      - "25565:24454/udp"
+      - "25575:25575"
+    volumes:
+      - mc-aloha-creative-vol:/data
+      - ./config/servers:/config
+    environment:
+      SERVER_NAME: mc-aloha-creative
+      EULA: "TRUE"
+      INIT_MEMORY: 1G
+      MAX_MEMORY: 2G
+      TYPE: FABRIC
+      FABRIC_LAUNCHER_VERSION: 1.0.1
+      FABRIC_LOADER_VERSION: 0.16.10
+      VERSION: 1.21.4
+      USE_AIKAR_FLAGS: "TRUE"
+      REPLACE_ENV_DURING_SYNC: "TRUE"
+      RCON_PASSWORD: ${MC_RCON_PASSWORD}
+      MODE: creative
+      LEVEL_TYPE: FLAT
+      GENERATOR_SETTINGS: >-4
+          {
+              "layers": [
+                  {
+                      "block": "minecraft:white_stained_glass",
+                      "height": 1
+                  }
+              ]
+          }
+      GENERATE_STRUCTURES: false
+      COPY_CONFIG_DEST: /data
+      CFG_SERVER_NAME: creative
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
+      CFG_LUCKPERMS_DB: ${LUCKPERMS_DB}
+      CFG_LUCKPERMS_DB_USER: ${LUCKPERMS_DB_USER}
+      CFG_LUCKPERMS_DB_PASSWORD: ${LUCKPERMS_DB_PASSWORD}
+      CFG_POLYMER_PORT: 25589
+      CFG_POLYMER_HOST: mc-aloha-creative
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+      MODRINTH_PROJECTS: |
+        fabricproxy-lite:AQhF7kvw
+        c2me-fabric:yGX4O0YU
+        krypton:Acz3ttTp
+        lithium:t1FlWYl9
+        vmp-fabric:ovEBHzIZ
+        ferrite-core:IPM0JlHd
+        noisium:9NHdQfkN
+        recipecooldown:oe5KEgWu
+        view-distance-fix:JHg6ZYop
+        modernfix:gx7PIV8n
+        entity-view-distance:DvEdX91O
+        scalablelux:DUpB8IQV
+        tt20:MjGahcCF
+        async:5k3VKog1
+        armorstandeditor:EPNBOZZ7
+        lmd:e0AXgTFp
+        mysql-jdbc:94JxXm7O
+        midnightlib:XVrBN1IF
+        appleskin:cHQjeYVS
+        placeholder-api:GtmqzyeE
+        polymer:O0WRTnsC
+        servux:fKoMLUos
+        simple-voice-chat:4Zzq92HE
+        audioplayer:377C94c4
+        sound-physics-remastered:jtRGevsD
+        rei:aBHkMOqF
+        luckperms:6h9SnsZu
+        styled-chat:b7ivf9W5
+        vanilla-permissions:7awQNHzw
+        melius-essentials:E0SDl3fV
+        servercore:uJYh4tBK
+        image2map:kkdbWskW
+        styled-nicknames:GeyvBGqo
+        worldedit:rIYOU6Ta
+      MODS: |
+        https://github.com/gnembon/fabric-carpet/releases/download/1.4.161/fabric-carpet-1.21.4-1.4.161+v241203.jar
+        https://github.com/gnembon/carpet-extra/releases/download/1.4.161/carpet-extra-1.21.4-1.4.161.jar
+        https://ci.lucko.me/job/LuckPermsPlaceholders/lastSuccessfulBuild/artifact/fabric-placeholderapi/build/libs/LuckPerms-Fabric-PlaceholderAPI-Hook.jar
+    depends_on:
+      - luckperms-db
+    networks:
+      - mc-network
+      - mc-rcon
 
-  # fabric MC Survival server
-  survival-server:
-    image: alohanetworks/survival
-    build:
-      context: servers/survival
-      dockerfile: Dockerfile
-    ports:
-      - "25566:25566"
-      - "25576:25576" 
-      - "24454:24454/udp"
-    networks:
-      - default 
-
-  # fabric MC Creative server
-  creative-server:
-    image: alohanetworks/creative
-    build:
-      context: servers/creative
-      dockerfile: Dockerfile
-    ports:
-      - "25567:25567"
-      - "25577:25577"
-      - "24455:24455/udp"
-    networks:
-      - default 
+volumes:
+  rcon-vol: {}
+  luckperms-db-vol: {}
+  dynmap-db-vol: {}
+  mc-aloha-survival-vol: {}
+  mc-aloha-creative-vol: {}
+  mc-aloha-proxy-vol: {}
 
 networks:
-  proxy-net:
+  mc-network:
+    driver: bridge
+  mc-rcon:
+    driver: bridge
