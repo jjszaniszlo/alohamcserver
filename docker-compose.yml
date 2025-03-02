@@ -1,10 +1,9 @@
 services:
   rcon:
-    container_name: mc-rcon
     image: itzg/rcon
     ports:
-      - 4326:4326
-      - 4327:4327
+      - "4326:4326"
+      - "4327:4327"
     environment:
       RWA_RCON_PASSWORD: ${MC_RCON_PASSWORD}
       RWA_ADMIN: "TRUE"
@@ -16,8 +15,6 @@ services:
     networks:
       - mc-rcon
   luckperms-db:
-    container_name: luckperms-db
-    hostname: luckperms-db
     image: mariadb
     restart: unless-stopped
     expose:
@@ -33,8 +30,6 @@ services:
     networks:
       - mc-network
   dynmap-db:
-    container_name: dynmap-db
-    hostname: dynmap-db
     image: mariadb
     restart: unless-stopped
     expose:
@@ -50,8 +45,6 @@ services:
     networks:
       - mc-network
   mc-aloha-proxy:
-    container_name: mc-aloha-proxy
-    hostname: mc-aloha-proxy
     image: itzg/mc-proxy
     ports:
       - "25565:25565/tcp"
@@ -82,8 +75,6 @@ services:
       - mc-aloha-survival
       - mc-aloha-creative
   mc-aloha-survival:
-    container_name: mc-aloha-survival
-    hostname: mc-aloha-survival
     build: .
     tty: true
     stdin_open: true
@@ -91,7 +82,6 @@ services:
     expose:
       - "25565:25565/tcp"
       - "25565:24454/udp"
-      - "25575:25575"
     volumes:
       - mc-aloha-survival-vol:/data
       - ./config/servers:/config
@@ -169,7 +159,6 @@ services:
         simple-voice-chat:4Zzq92HE
         audioplayer:377C94c4
         sound-physics-remastered:jtRGevsD
-        rei:aBHkMOqF
         chunky:VkAgASL1
         luckperms:6h9SnsZu
         styled-chat:b7ivf9W5
@@ -208,8 +197,6 @@ services:
       - mc-network
       - mc-rcon
   mc-aloha-creative:
-    container_name: mc-aloha-creative
-    hostname: mc-aloha-creative
     build: .
     tty: true
     stdin_open: true
@@ -217,7 +204,6 @@ services:
     expose:
       - "25565:25565/tcp"
       - "25565:24454/udp"
-      - "25575:25575"
     volumes:
       - mc-aloha-creative-vol:/data
       - ./config/servers:/config
@@ -289,6 +275,7 @@ services:
         image2map:kkdbWskW
         styled-nicknames:GeyvBGqo
         worldedit:rIYOU6Ta
+        axiom:WTVYndOG
       MODS: |
         https://github.com/gnembon/fabric-carpet/releases/download/1.4.161/fabric-carpet-1.21.4-1.4.161+v241203.jar
         https://github.com/gnembon/carpet-extra/releases/download/1.4.161/carpet-extra-1.21.4-1.4.161.jar
