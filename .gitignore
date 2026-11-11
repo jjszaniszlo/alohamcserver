@@ -1,0 +1,15 @@
+mcman.exe
+
+# mcman: Exclude mcman build outputs
+**/server
+# mcman: Exclude exported mrpacks
+*.mrpack
+# mcman: Exclude local dotenv files
+**/.env
+
+
+
+config2
+discord.bash
+luckperms.sql
+world.tar.gz
